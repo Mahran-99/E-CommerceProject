@@ -15,22 +15,22 @@ public class RegisterPage {
         driver.findElement(By.linkText("Register")).click();
     }
 
-    public void fillRegisterData() throws InterruptedException {
+    public void fillRegisterData(String firstName, String lastName, String email, String password, String confirmPassword) throws InterruptedException {
         driver.findElement(By.id("FirstName")).clear();
-        driver.findElement(By.id("FirstName")).sendKeys("Omar");
+        driver.findElement(By.id("FirstName")).sendKeys(firstName);
         System.out.println(driver.findElement(By.id("FirstName")));
 
         driver.findElement(By.id("LastName")).clear();
-        driver.findElement(By.id("LastName")).sendKeys("Aly");
+        driver.findElement(By.id("LastName")).sendKeys(lastName);
 
         driver.findElement(By.id("Email")).clear();
-        driver.findElement(By.id("Email")).sendKeys("Aly@example.com");
+        driver.findElement(By.id("Email")).sendKeys(email);
 
         driver.findElement(By.id("Password")).clear();
-        driver.findElement(By.id("Password")).sendKeys("hopaaaa");
+        driver.findElement(By.id("Password")).sendKeys(password);
 
         driver.findElement(By.id("ConfirmPassword")).clear();
-        driver.findElement(By.id("ConfirmPassword")).sendKeys("hopaaaa");
+        driver.findElement(By.id("ConfirmPassword")).sendKeys(confirmPassword);
         Thread.sleep(3000);
         driver.findElement(By.id("register-button")).click();
 
@@ -40,7 +40,7 @@ public class RegisterPage {
         Assert.assertTrue(driver.findElement(By.className("result")).getText().equalsIgnoreCase("Your registration completed"),
                 "Registration Complete");
         Thread.sleep(3000);
-        driver.findElement(By.linkText("Continue")).click();
+        driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a")).click();
     }
 
 

@@ -5,7 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class LoginStepDef {
+public class SD02_Login {
 
     LoginPage log = new LoginPage(Hooks.driver);
 
@@ -14,9 +14,9 @@ public class LoginStepDef {
         log.clickOnLogin();
     }
 
-    @When("user enters valid email amd password")
-    public void validData() throws InterruptedException {
-        log.fillLoginData();
+    @When("user enters valid \"(.*)\" and \"(.*)\"$")
+    public void validData(String email, String password) throws InterruptedException {
+        log.fillLoginData(email, password);
     }
 
     @Then("user logins successfully")
