@@ -1,8 +1,23 @@
-@regression
 Feature: user should be able to register on the system
 
   Scenario: user register with valid data
     Given user navigates to registration page
-    # user enters valid mandatory data firstname , lastname , email , password , confirm password
-    When user enters valid mandatory data "Yehia" , "Ramadan" , "yehia@example.com" , "asdasd" and "asdasd"
+    # user chooses gender
+    When user chooses male
+    # user enters firstname
+    And user enters FirstName "Omar"
+    # user enters lastname
+    And user enters LastName "Mahran"
+    # user enters date of birth
+    And user enters DOB "16" , "April" , "1999"
+    # user enters email
+    And user enters Email "omar@example.com"
+    # user enters company name
+    And user enters CompanyName "Automation Company"
+    # user enters password
+    And user enters Password "P@ssw0rd"
+    # user enters confirm password
+    And user enters Confirm Password "P@ssw0rd"
+    # user clicks on register button
+    And user clicks on register button
     Then user is registered on system

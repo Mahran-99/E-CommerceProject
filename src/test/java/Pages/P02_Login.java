@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class LoginPage {
+public class P02_Login {
     public WebDriver driver;
 
-    public LoginPage(WebDriver driver) {
+    public P02_Login(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -22,7 +22,8 @@ public class LoginPage {
     }
 
     public void loginMessage() {
-        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase("https://demo.nopcommerce.com/"), "Login Successfully");
+        Assert.assertEquals(driver.getCurrentUrl(), "https://demo.nopcommerce.com/", "Login Successfully");
+        Assert.assertTrue(driver.findElement(By.linkText("My account")).isDisplayed());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

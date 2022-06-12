@@ -1,13 +1,13 @@
 package StepDefinitions;
 
-import Pages.LoginPage;
+import Pages.P02_Login;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SD02_Login {
 
-    LoginPage log = new LoginPage(Hooks.driver);
+    P02_Login log = new P02_Login(Hooks.driver);
 
     @Given("user navigates to login page")
     public void goToLoginPage() {

@@ -5,10 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-public class ResetPasswordPage {
+public class P03_ResetPassword {
     WebDriver driver;
 
-    public ResetPasswordPage(WebDriver driver) {
+    public P03_ResetPassword(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -28,7 +28,8 @@ public class ResetPasswordPage {
     }
 
     public void passwordChangedSuccessfully(){
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div[5]/div/p")),"Password was changed",
+        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div[5]/div/p")).getText(),
+                "Email with instructions has been sent to you",
                 "Password Changed Successfully");
     }
 

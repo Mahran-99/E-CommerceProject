@@ -1,6 +1,6 @@
 package StepDefinitions;
 
-import Pages.ResetPasswordPage;
+import Pages.P03_ResetPassword;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 
 public class SD03_ResetPassword {
 
-    ResetPasswordPage resetPassword = new ResetPasswordPage(Hooks.driver);
+    P03_ResetPassword resetPassword = new P03_ResetPassword(Hooks.driver);
 
     @Given("user navigates to account settings")
     public void accessMyAccount(){
