@@ -1,34 +1,35 @@
 package Pages;
 
+import StepDefinitions.Hooks;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class P02_Login {
-    public WebDriver driver;
 
-    public P02_Login(WebDriver driver) {
-        this.driver = driver;
+    public WebElement clickOnLogin() {
+        return Hooks.driver.findElement(By.linkText("Log in"));
     }
 
-    public void clickOnLogin() {
-        driver.findElement(By.linkText("Log in")).click();
+    public List<WebElement> fillLoginData() {
+        List<WebElement> webElements = new ArrayList<>();
+        webElements.add(Hooks.driver.findElement(By.name("Email")));
+        webElements.add(Hooks.driver.findElement(By.name("Password")));
+        return webElements;
     }
 
-    public void fillLoginData(String email, String password) throws InterruptedException {
-        driver.findElement(By.name("Email")).sendKeys(email);
-        driver.findElement(By.name("Password")).sendKeys(password);
-        driver.findElement(By.className("login-button")).click();
+    public WebElement loginBtn() {
+        return Hooks.driver.findElement(By.className("login-button"));
     }
 
-    public void loginMessage() {
-        Assert.assertEquals(driver.getCurrentUrl(), "https://demo.nopcommerce.com/", "Login Successfully");
-        Assert.assertTrue(driver.findElement(By.linkText("My account")).isDisplayed());
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public WebElement loginMessage() {
+        return Hooks.driver.findElement(By.linkText("My account"));
+    }
+
+    public WebElement failedLoginMessage() {
+        return Hooks.driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[1]"));
     }
 
 

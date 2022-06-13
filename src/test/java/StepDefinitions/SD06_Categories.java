@@ -4,24 +4,32 @@ import Pages.P06_Categories;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 public class SD06_Categories {
 
-    P06_Categories categories = new P06_Categories(Hooks.driver);
+    P06_Categories categories = new P06_Categories();
+    Actions actions = new Actions(Hooks.driver);
+    String subCategoryName;
 
     @Given("user hovers on Computers category")
     public void hoverOnCategory() throws InterruptedException {
-        categories.hoverOnCategory();
+        actions.moveToElement(categories.hoverOnCategory()).perform();
+        Thread.sleep(3000);
     }
 
     @When("user selects a sub-category Desktops")
     public void selectSubCategory(){
-        categories.selectSubCategory();
+        subCategoryName = categories.selectSubCategory().getText().toLowerCase().trim();
+        categories.selectSubCategory().click();
     }
 
     @Then("user navigates to Desktops sub-category page")
     public void goToSubCategoryPage(){
-        categories.goToSubCategoryPage();
+        System.out.println("Title: " + categories.goToSubCategoryPage().getText().toLowerCase().trim());
+        System.out.println("subCategoryName : " + subCategoryName);
+        Assert.assertEquals(categories.goToSubCategoryPage().getText().toLowerCase().trim(),subCategoryName,"Desktop title displayed");
     }
 
 }

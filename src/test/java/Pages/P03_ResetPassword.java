@@ -1,36 +1,34 @@
 package Pages;
 
 
+import StepDefinitions.Hooks;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class P03_ResetPassword {
-    WebDriver driver;
 
-    public P03_ResetPassword(WebDriver driver) {
-        this.driver = driver;
+    public WebElement clickOnMyAccount() {
+        return Hooks.driver.findElement(By.linkText("My account"));
     }
 
-    public void clickOnMyAccount(){
-        driver.findElement(By.linkText("My account")).click();
+    public WebElement changePasswordTab() {
+        return Hooks.driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[1]/div/div[2]/ul/li[7]/a"));
     }
 
-    public void changePasswordTab(){
-        driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[1]/div/div[2]/ul/li[7]/a")).click();
+    public List<WebElement> changePassword() {
+        List<WebElement> webElements = new ArrayList<>();
+        webElements.add(Hooks.driver.findElement(By.id("OldPassword")));
+        webElements.add(Hooks.driver.findElement(By.id("NewPassword")));
+        webElements.add(Hooks.driver.findElement(By.id("ConfirmNewPassword")));
+        webElements.add(Hooks.driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[2]/button")));
+        return webElements;
     }
 
-    public void changePassword(String oldPassword, String newPassword, String confirmPassword){
-        driver.findElement(By.id("OldPassword")).sendKeys(oldPassword);
-        driver.findElement(By.id("NewPassword")).sendKeys(newPassword);
-        driver.findElement(By.id("ConfirmNewPassword")).sendKeys(confirmPassword);
-        driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[2]/button")).click();
-    }
-
-    public void passwordChangedSuccessfully(){
-        Assert.assertEquals(driver.findElement(By.xpath("/html/body/div[5]/div/p")).getText(),
-                "Email with instructions has been sent to you",
-                "Password Changed Successfully");
+    public WebElement passwordChangedSuccessfully() {
+        return Hooks.driver.findElement(By.xpath("/html/body/div[5]/div/p"));
     }
 
 

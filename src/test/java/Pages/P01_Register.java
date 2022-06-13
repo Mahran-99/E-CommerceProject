@@ -1,75 +1,74 @@
 package Pages;
 
+import StepDefinitions.Hooks;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class P01_Register {
-    public WebDriver driver;
 
-    public P01_Register(WebDriver driver) {
-        this.driver = driver;
-    }
+    Select select;
 
-    public void clickOnRegister() {
-        driver.findElement(By.linkText("Register")).click();
+    public WebElement clickOnRegister() {
+        return Hooks.driver.findElement(By.linkText("Register"));
     }
 
 
-    public void gender() {
-        driver.findElement(By.id("gender-male")).click();
+    public WebElement gender() {
+        return Hooks.driver.findElement(By.id("gender-male"));
     }
 
-    public void firstName(String firstName) {
-        driver.findElement(By.id("FirstName")).clear();
-        driver.findElement(By.id("FirstName")).sendKeys(firstName);
+    public WebElement firstName() {
+        return Hooks.driver.findElement(By.id("FirstName"));
     }
 
-    public void lastName(String lastName) {
-        driver.findElement(By.id("LastName")).clear();
-        driver.findElement(By.id("LastName")).sendKeys(lastName);
+    public WebElement lastName() {
+        return Hooks.driver.findElement(By.id("LastName"));
     }
 
-    public void dob(String day, String month, String year) {
-        Select selectDay = new Select(driver.findElement(By.name("DateOfBirthDay")));
-        selectDay.selectByVisibleText(day);
-        Select selectMonth = new Select(driver.findElement(By.name("DateOfBirthMonth")));
-        selectMonth.selectByVisibleText(month);
-        Select selectYear = new Select(driver.findElement(By.name("DateOfBirthYear")));
-        selectYear.selectByVisibleText(year);
+    public Select selectDay() {
+        select = new Select(Hooks.driver.findElement(By.name("DateOfBirthDay")));
+        return select;
     }
 
-    public void email(String email) {
-        driver.findElement(By.id("Email")).clear();
-        driver.findElement(By.id("Email")).sendKeys(email);
+    public Select selectMonth() {
+        select = new Select(Hooks.driver.findElement(By.name("DateOfBirthMonth")));
+        return select;
     }
 
-    public void companyName(String companyName) {
-        driver.findElement(By.id("Company")).clear();
-        driver.findElement(By.id("Company")).sendKeys(companyName);
+    public Select selectYear() {
+        select = new Select(Hooks.driver.findElement(By.name("DateOfBirthYear")));
+        return select;
     }
 
-    public void password(String pass) {
-        driver.findElement(By.id("Password")).clear();
-        driver.findElement(By.id("Password")).sendKeys(pass);
+    public WebElement email() {
+        return Hooks.driver.findElement(By.id("Email"));
     }
 
-    public void confirmPassword(String confirmPass) {
-        driver.findElement(By.id("ConfirmPassword")).clear();
-        driver.findElement(By.id("ConfirmPassword")).sendKeys(confirmPass);
+    public WebElement companyName() {
+        return Hooks.driver.findElement(By.id("Company"));
     }
 
-    public void clickRegisterBtn() throws InterruptedException {
-        Thread.sleep(3000);
-        driver.findElement(By.id("register-button")).click();
+    public WebElement password() {
+        return Hooks.driver.findElement(By.id("Password"));
     }
 
-    public void registerMessage() throws InterruptedException {
-        Assert.assertTrue(driver.findElement(By.className("result")).getText().equalsIgnoreCase("Your registration completed"),
-                "Registration Complete");
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a")).click();
+    public WebElement confirmPassword() {
+        return Hooks.driver.findElement(By.id("ConfirmPassword"));
+    }
+
+    public WebElement clickRegisterBtn() {
+        return Hooks.driver.findElement(By.id("register-button"));
+    }
+
+    public List<WebElement> registerMessage() {
+        List<WebElement> webElements = new ArrayList<>();
+        webElements.add(Hooks.driver.findElement(By.className("result")));
+        webElements.add(Hooks.driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a")));
+        return webElements;
     }
 
 
