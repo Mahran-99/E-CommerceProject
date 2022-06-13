@@ -21,15 +21,16 @@ public class SD06_Categories {
 
     @When("user selects a sub-category Desktops")
     public void selectSubCategory(){
-        subCategoryName = categories.selectSubCategory().getText().toLowerCase().trim();
+        subCategoryName = categories.selectSubCategory().getText();
         categories.selectSubCategory().click();
     }
 
     @Then("user navigates to Desktops sub-category page")
     public void goToSubCategoryPage(){
-        System.out.println("Title: " + categories.goToSubCategoryPage().getText().toLowerCase().trim());
+        System.out.println("Title: " + categories.goToSubCategoryPage().getText());
         System.out.println("subCategoryName : " + subCategoryName);
-        Assert.assertEquals(categories.goToSubCategoryPage().getText().toLowerCase().trim(),subCategoryName,"Desktop title displayed");
+        Assert.assertEquals(categories.goToSubCategoryPage().getText(),subCategoryName,"Desktop title displayed");
+        Assert.assertTrue(Hooks.driver.getCurrentUrl().contains(subCategoryName.toLowerCase().trim()),"URL contains desktops");
     }
 
 }
