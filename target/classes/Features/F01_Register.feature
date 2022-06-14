@@ -12,7 +12,7 @@ Feature: user should be able to register on the system
     # user enters date of birth
     And user enters DOB "10" , "March" , "1999"
     # user enters email
-    And user enters Email "automation@example.com"
+    And user enters Email "omar@example.com"
     # user enters company name
     And user enters CompanyName "Automation Company"
     # user enters password

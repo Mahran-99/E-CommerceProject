@@ -3,7 +3,7 @@ Feature: user should be able to reset his/her password
 
   Background: user is logged in
     Given user navigates to login page
-    When user enters valid "automation@example.com" and "P@ssw0rd"
+    When user enters valid "omar@example.com" and "P@ssw0rd"
     And user press on login button
     Then user logins successfully
 
